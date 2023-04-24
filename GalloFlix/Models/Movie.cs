@@ -32,7 +32,7 @@ namespace GalloFlix.Models;
         [Display(Name = "Duração (em minutos)")]
         [Required(ErrorMessage = "A Duração é obrigatória!")]
 
-        public Int16 Duartion { get; set; }
+        public Int16 Duration { get; set; }
 
         [Display(Name = "Classificação Etária")]
         [Required(ErrorMessage = "O Classificação Etária é obrigatória!")]
