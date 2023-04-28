@@ -49,4 +49,7 @@ namespace GalloFlix.Models;
         public string HourDuration { get {
             return TimeSpan.FromMinutes(Duration).ToString(@"%h 'h 'mn'min' ");
         }}
+        public ICollection<MovieComment> Comments { get; set; }
+        public ICollection<MovieGenre> Genres { get; set; }
+        public ICollection<MovieRating> Ratings { get; set; }
     }

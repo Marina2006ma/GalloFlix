@@ -14,5 +14,5 @@ namespace GalloFlix.Models;
         [Required(ErrorMessage = "O Nome do Gênero é obrigatório!")]
         [StringLength(30, ErrorMessage = "O Nome deve possuir no máximo 30 caracteres")]
         public string Name { get; set; }
-        
+        public ICollection<MovieGenre> Movies { get; set; }
     }
