@@ -1,7 +1,15 @@
+using GalloFlix.Data;
+using Microsoft.EntityFrameworkCore;
+using
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+string conn = builder.Configuration.GetConnectionString("GalloFlix");
+var version = ServerVersion.AutoDetect(conn);
+builder.Services.AddDbContext<AppContext>()
 
 var app = builder.Build();
 
