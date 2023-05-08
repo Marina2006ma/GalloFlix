@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace GalloFlix.Models;
     public class Movie
     {
-         [Key]
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
+        public int Id { get; set; }
     
         [Display(Name ="Título Original")]
         [Required(ErrorMessage = "O Título é obrigatório!")]
