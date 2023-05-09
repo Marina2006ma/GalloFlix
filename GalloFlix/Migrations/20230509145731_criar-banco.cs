@@ -323,6 +323,26 @@ namespace GalloFlix.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "21bac4e9-ff9f-4423-99f7-704022267c35", "2dd4a0e2-d3ab-463b-a7d5-9ef9816ab98d", "Administrator", "ADMINISTRADOR" },
+                    { "7a82e1ec-9739-4924-bfe1-b795530bbe2f", "1f86a16e-e04b-4e11-a664-bdce4d186915", "Usuário", "USUÁRIO" },
+                    { "8ae9613f-f043-48a0-a131-114a067baa80", "85801f6d-d955-436c-b734-85daf3e2fa45", "Moderador", "MODERADOR" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DateOfBirth", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "abecda1d-b194-47cd-83c9-546b8813bed4", 0, "39cd47ac-7fb0-482d-aa28-357a340daabe", new DateTime(2006, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "AppUser", "marinaporfirio11@gmail.com", true, false, null, "Marina Porfirio", "MARINAPORFIRIO11@GMAIL.COM", "MARINAMUNHOZ", "AQAAAAEAACcQAAAAEPz1ukjNHtSbft9CdolAmI5369Iy3cj1E3eW0LLBHgJiY3dh9kaETzFPdneGhWzc+Q==", "14998091305", true, "/img/users/avatar.png", "b97fdd5d-a033-4128-8272-f7632d0c8542", false, "MarinaMunhoz" });
+
+            migrationBuilder.InsertData(
+                table: "UserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "21bac4e9-ff9f-4423-99f7-704022267c35", "abecda1d-b194-47cd-83c9-546b8813bed4" });
+
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
                 table: "AspNetRoles",

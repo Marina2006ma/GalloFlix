@@ -58,8 +58,8 @@ namespace GalloFlix.Data;
             foreach (var user in users)
             {
                 PasswordHasher<AppUser> pass = new();
-                user.PasswordHash = pass.HashPassword(user, "@Etec123")
-            }
+                user.PasswordHash = pass.HashPassword(user, "@Etec123");
+            };
             builder.Entity<AppUser>().HasData(users);
             #endregion
             
