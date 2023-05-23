@@ -39,12 +39,26 @@ namespace GalloFlix.Controllers;
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult Login(LoginDto login)
+        public async Task<IActionResult> Login(LoginDto login)
 
         {
+            // Se o model é válido, faz login
             if (ModelState.IsValid)
             {
-                return LocalRedirect(login.ReturnUrl);
+                var result = await  _singInManager.PasswordSignInAsync(
+                    login.Email,login.Password, login.RememberMe, lockoutOnFailure: true
+                );
+                if (result.Succeeded)
+                {
+                    _logger.LogInformation($"Usuário { login.Email } acessou o sitema");
+                    return LocalRedirect(login.ReturnUrl);
+                }
+                if (result.IsLockedOut)
+                {
+                    _logger.LogInformation($"Usuário { login.Email } está bloqueado");
+                    return RedirectToAction("Lockout");
+                }
+                ModelState.AddModelError("login", "Usuário e/ou Senha Inválidos!!!");
             }
             return View(login);
         }
