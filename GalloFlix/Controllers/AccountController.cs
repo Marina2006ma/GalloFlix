@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using GalloFlix.DataTransferObjects;
 using GalloFlix.Models;
 using Microsoft.AspNetCore.Identity;
-
+using System.Net.Mail;
 
 namespace GalloFlix.Controllers;
 
@@ -45,8 +45,16 @@ namespace GalloFlix.Controllers;
             // Se o model é válido, faz login
             if (ModelState.IsValid)
             {
+                string userName = login.Email;
+                if (IsValidEmail(login.Email))
+                {
+                    var user = await _userManager.FindByEmailAsync(login.Email);
+                    if (user != null)
+                        userName = user.UserName;
+                }
+
                 var result = await  _singInManager.PasswordSignInAsync(
-                    login.Email,login.Password, login.RememberMe, lockoutOnFailure: true
+                    userName,login.Password, login.RememberMe, lockoutOnFailure: true
                 );
                 if (result.Succeeded)
                 {
@@ -62,4 +70,18 @@ namespace GalloFlix.Controllers;
             }
             return View(login);
         }
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                MailAddress m = new(email);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        } 
+
     }
