@@ -11,7 +11,7 @@ namespace GalloFlix.DataTransferObjects;
 
         [DataType(DataType.Date)]
         [Display(Name = "Data de Nascimento")]
-        [Required(ErrorMessage = "Por favor, indorme sua Data de Nascimento")]
+        [Required(ErrorMessage = "Por favor, informe sua Data de Nascimento")]
         public DateTime DateOfBirth { get; set; }  
 
         [Required(ErrorMessage = "Por favor, informe seu Email")]
