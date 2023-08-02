@@ -54,14 +54,15 @@ namespace GalloFlix.Migrations
                     b.Property<short>("MovieYear")
                         .HasColumnType("Year");
 
-                    b.Property<int>("OriginalTitle")
+                    b.Property<string>("OriginalTitle")
+                        .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("int");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Synopsis")
                         .IsRequired()
-                        .HasMaxLength(5000)
-                        .HasColumnType("varchar(5000)");
+                        .HasMaxLength(8000)
+                        .HasColumnType("varchar(8000)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -166,29 +167,29 @@ namespace GalloFlix.Migrations
                         .IsUnique()
                         .HasDatabaseName("RoleNameIndex");
 
-                    b.ToTable("AspNetRoles", (string)null);
+                    b.ToTable("Roles", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Id = "21bac4e9-ff9f-4423-99f7-704022267c35",
-                            ConcurrencyStamp = "2dd4a0e2-d3ab-463b-a7d5-9ef9816ab98d",
-                            Name = "Administrator",
+                            Id = "5b2ca036-a13a-4440-927c-dce5d2b48417",
+                            ConcurrencyStamp = "8163ec0e-3801-446f-b3f4-d8e21e87428e",
+                            Name = "Administrador",
                             NormalizedName = "ADMINISTRADOR"
                         },
                         new
                         {
-                            Id = "8ae9613f-f043-48a0-a131-114a067baa80",
-                            ConcurrencyStamp = "85801f6d-d955-436c-b734-85daf3e2fa45",
+                            Id = "55b5b130-38c8-4264-b452-9cce46a0e8bb",
+                            ConcurrencyStamp = "f8af7d68-5881-47ef-9eb8-51a514084c64",
                             Name = "Moderador",
                             NormalizedName = "MODERADOR"
                         },
                         new
                         {
-                            Id = "7a82e1ec-9739-4924-bfe1-b795530bbe2f",
-                            ConcurrencyStamp = "1f86a16e-e04b-4e11-a664-bdce4d186915",
+                            Id = "bb1853b0-4814-4095-9ced-da955dbc227c",
+                            ConcurrencyStamp = "db2482ca-5e9e-455b-a7b7-a6ad32f6e0fa",
                             Name = "Usuário",
-                            NormalizedName = "USUÁRIO"
+                            NormalizedName = " USUÁRIO"
                         });
                 });
 
@@ -347,8 +348,8 @@ namespace GalloFlix.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "abecda1d-b194-47cd-83c9-546b8813bed4",
-                            RoleId = "21bac4e9-ff9f-4423-99f7-704022267c35"
+                            UserId = "0930dd7c-55e2-4fd3-a64c-1e708e633bc3",
+                            RoleId = "5b2ca036-a13a-4440-927c-dce5d2b48417"
                         });
                 });
 
@@ -392,22 +393,22 @@ namespace GalloFlix.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "abecda1d-b194-47cd-83c9-546b8813bed4",
+                            Id = "0930dd7c-55e2-4fd3-a64c-1e708e633bc3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "39cd47ac-7fb0-482d-aa28-357a340daabe",
-                            Email = "marinaporfirio11@gmail.com",
+                            ConcurrencyStamp = "68f44922-fd7e-49dc-93e5-e71fb7bdd388",
+                            Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "MARINAPORFIRIO11@GMAIL.COM",
-                            NormalizedUserName = "MARINAMUNHOZ",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPz1ukjNHtSbft9CdolAmI5369Iy3cj1E3eW0LLBHgJiY3dh9kaETzFPdneGhWzc+Q==",
-                            PhoneNumber = "14998091305",
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKF8Uw0XixgRgxWAVTRh/taR6SDa2QGw08mjLjrGLbyJhYoR4SviJ15vjV/+o08amg==",
+                            PhoneNumber = "14912345678",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "b97fdd5d-a033-4128-8272-f7632d0c8542",
+                            SecurityStamp = "83af9131-91da-4a66-96fe-5d02c47480ab",
                             TwoFactorEnabled = false,
-                            UserName = "MarinaMunhoz",
-                            DateOfBirth = new DateTime(2006, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Marina Porfirio",
+                            UserName = "Admin",
+                            DateOfBirth = new DateTime(2005, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Seu Nome Completo",
                             ProfilePicture = "/img/users/avatar.png"
                         });
                 });
