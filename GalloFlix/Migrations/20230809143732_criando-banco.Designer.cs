@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GalloFlix.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230802144307_criando-banco")]
+    [Migration("20230809143732_criando-banco")]
     partial class criandobanco
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -174,22 +174,22 @@ namespace GalloFlix.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "5b2ca036-a13a-4440-927c-dce5d2b48417",
-                            ConcurrencyStamp = "8163ec0e-3801-446f-b3f4-d8e21e87428e",
+                            Id = "3e5f0814-807e-4be1-9153-ccb05b1435aa",
+                            ConcurrencyStamp = "07a7741e-7956-48e4-9b23-08ee79feb495",
                             Name = "Administrador",
                             NormalizedName = "ADMINISTRADOR"
                         },
                         new
                         {
-                            Id = "55b5b130-38c8-4264-b452-9cce46a0e8bb",
-                            ConcurrencyStamp = "f8af7d68-5881-47ef-9eb8-51a514084c64",
+                            Id = "90eec85f-1e85-4bf2-ac29-82b513179e02",
+                            ConcurrencyStamp = "d48fbff3-f3bc-4748-bcd3-e1311a324ffc",
                             Name = "Moderador",
                             NormalizedName = "MODERADOR"
                         },
                         new
                         {
-                            Id = "bb1853b0-4814-4095-9ced-da955dbc227c",
-                            ConcurrencyStamp = "db2482ca-5e9e-455b-a7b7-a6ad32f6e0fa",
+                            Id = "12b07ec7-4ab2-4303-924c-42d5948a2b32",
+                            ConcurrencyStamp = "7ca9d191-76dc-483b-98bd-b6e7956fb584",
                             Name = "Usuário",
                             NormalizedName = " USUÁRIO"
                         });
@@ -350,8 +350,8 @@ namespace GalloFlix.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "0930dd7c-55e2-4fd3-a64c-1e708e633bc3",
-                            RoleId = "5b2ca036-a13a-4440-927c-dce5d2b48417"
+                            UserId = "a0d86ec0-c477-44de-95ff-47fb6ef190fe",
+                            RoleId = "3e5f0814-807e-4be1-9153-ccb05b1435aa"
                         });
                 });
 
@@ -395,18 +395,18 @@ namespace GalloFlix.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0930dd7c-55e2-4fd3-a64c-1e708e633bc3",
+                            Id = "a0d86ec0-c477-44de-95ff-47fb6ef190fe",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "68f44922-fd7e-49dc-93e5-e71fb7bdd388",
+                            ConcurrencyStamp = "d40b411e-20d6-4ff0-a35e-3c20572edf89",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKF8Uw0XixgRgxWAVTRh/taR6SDa2QGw08mjLjrGLbyJhYoR4SviJ15vjV/+o08amg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF6VL4sQMmq4yu0Xm1KW7NQ5RkQ1CUlH0VV4/8IIhFFdBId/xBhmXxQKn0NGMnE5aQ==",
                             PhoneNumber = "14912345678",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "83af9131-91da-4a66-96fe-5d02c47480ab",
+                            SecurityStamp = "2ff750b2-ef52-4cc1-b13f-399b12f8f9c8",
                             TwoFactorEnabled = false,
                             UserName = "Admin",
                             DateOfBirth = new DateTime(2005, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),

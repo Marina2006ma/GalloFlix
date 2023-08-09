@@ -6,30 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GalloFlix.Migrations
 {
-    public partial class criarbanco : Migration
+    public partial class criandobanco : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "AspNetRoles",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Name = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    NormalizedName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ConcurrencyStamp = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
-                })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
@@ -55,8 +36,9 @@ namespace GalloFlix.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    OriginalTitle = table.Column<int>(type: "int", maxLength: 100, nullable: false),
-                    Synopsis = table.Column<string>(type: "varchar(5000)", maxLength: 5000, nullable: false)
+                    OriginalTitle = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Synopsis = table.Column<string>(type: "varchar(8000)", maxLength: 8000, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     MovieYear = table.Column<short>(type: "Year", nullable: false),
                     Duration = table.Column<short>(type: "smallint", nullable: false),
@@ -67,6 +49,25 @@ namespace GalloFlix.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Movie", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Roles",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Name = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    NormalizedName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ConcurrencyStamp = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Roles", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -113,31 +114,6 @@ namespace GalloFlix.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "RoleClaims",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    RoleId = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ClaimType = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ClaimValue = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RoleClaims", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RoleClaims_AspNetRoles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "MovieGenre",
                 columns: table => new
                 {
@@ -157,6 +133,31 @@ namespace GalloFlix.Migrations
                         name: "FK_MovieGenre_Movie_MovieId",
                         column: x => x.MovieId,
                         principalTable: "Movie",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "RoleClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    RoleId = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ClaimType = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ClaimValue = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoleClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RoleClaims_Roles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -284,9 +285,9 @@ namespace GalloFlix.Migrations
                 {
                     table.PrimaryKey("PK_UserRoles", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_UserRoles_AspNetRoles_RoleId",
+                        name: "FK_UserRoles_Roles_RoleId",
                         column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
+                        principalTable: "Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -324,30 +325,24 @@ namespace GalloFlix.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.InsertData(
-                table: "AspNetRoles",
+                table: "Roles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "21bac4e9-ff9f-4423-99f7-704022267c35", "2dd4a0e2-d3ab-463b-a7d5-9ef9816ab98d", "Administrator", "ADMINISTRADOR" },
-                    { "7a82e1ec-9739-4924-bfe1-b795530bbe2f", "1f86a16e-e04b-4e11-a664-bdce4d186915", "Usuário", "USUÁRIO" },
-                    { "8ae9613f-f043-48a0-a131-114a067baa80", "85801f6d-d955-436c-b734-85daf3e2fa45", "Moderador", "MODERADOR" }
+                    { "12b07ec7-4ab2-4303-924c-42d5948a2b32", "7ca9d191-76dc-483b-98bd-b6e7956fb584", "Usuário", " USUÁRIO" },
+                    { "3e5f0814-807e-4be1-9153-ccb05b1435aa", "07a7741e-7956-48e4-9b23-08ee79feb495", "Administrador", "ADMINISTRADOR" },
+                    { "90eec85f-1e85-4bf2-ac29-82b513179e02", "d48fbff3-f3bc-4748-bcd3-e1311a324ffc", "Moderador", "MODERADOR" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DateOfBirth", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "abecda1d-b194-47cd-83c9-546b8813bed4", 0, "39cd47ac-7fb0-482d-aa28-357a340daabe", new DateTime(2006, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "AppUser", "marinaporfirio11@gmail.com", true, false, null, "Marina Porfirio", "MARINAPORFIRIO11@GMAIL.COM", "MARINAMUNHOZ", "AQAAAAEAACcQAAAAEPz1ukjNHtSbft9CdolAmI5369Iy3cj1E3eW0LLBHgJiY3dh9kaETzFPdneGhWzc+Q==", "14998091305", true, "/img/users/avatar.png", "b97fdd5d-a033-4128-8272-f7632d0c8542", false, "MarinaMunhoz" });
+                values: new object[] { "a0d86ec0-c477-44de-95ff-47fb6ef190fe", 0, "d40b411e-20d6-4ff0-a35e-3c20572edf89", new DateTime(2005, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "AppUser", "admin@gmail.com", true, false, null, "Seu Nome Completo", "ADMIN@GMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEF6VL4sQMmq4yu0Xm1KW7NQ5RkQ1CUlH0VV4/8IIhFFdBId/xBhmXxQKn0NGMnE5aQ==", "14912345678", true, "/img/users/avatar.png", "2ff750b2-ef52-4cc1-b13f-399b12f8f9c8", false, "Admin" });
 
             migrationBuilder.InsertData(
                 table: "UserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "21bac4e9-ff9f-4423-99f7-704022267c35", "abecda1d-b194-47cd-83c9-546b8813bed4" });
-
-            migrationBuilder.CreateIndex(
-                name: "RoleNameIndex",
-                table: "AspNetRoles",
-                column: "NormalizedName",
-                unique: true);
+                values: new object[] { "3e5f0814-807e-4be1-9153-ccb05b1435aa", "a0d86ec0-c477-44de-95ff-47fb6ef190fe" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_MovieComment_MovieId",
@@ -373,6 +368,12 @@ namespace GalloFlix.Migrations
                 name: "IX_RoleClaims_RoleId",
                 table: "RoleClaims",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                table: "Roles",
+                column: "NormalizedName",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserClaims_UserId",
@@ -434,7 +435,7 @@ namespace GalloFlix.Migrations
                 name: "Movie");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "Users");
